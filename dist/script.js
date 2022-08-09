@@ -203,3 +203,126 @@ function deselectAllInputs() {
         answer.checked = false;
     }
 }
+
+// function to remove selected footerElements Group from visibility
+function footerElementsInvisible(footerElements) {
+    switch(footerElements) {
+        default:
+            console.log("No Footer Elements Group was selected. Please review code and select appropriate grouping.")
+        case startFooterElements:
+            startFooterElements.classList.remove('active-panel');
+            startFooterElements.style.display = 'none';
+            break;
+        case quizFooterElements:
+            quizFooterElements.classList.remove('active-panel');
+            quizFooterElements.style.display = 'none';
+            break;
+        case menuFooterElements:
+            menuFooterElements.classList.remove('active-panel');
+            menuFooterElements.style.display = 'none';
+            break;
+    }
+}
+
+// function to return selected footerElements Group to visibility
+function footerElementsVisible(visibilitySelector) {
+    switch(visibilitySelector) {
+        default:
+            console.log("No Footer Elements Group was selected. Please review code and select appropriate grouping.")
+        case startFooterElements:
+            startFooterElements.classList.add('active-panel');
+            startFooterElements.style.display = 'flex';
+            break;
+        case quizFooterElements:
+            quizFooterElements.classList.add('active-panel');
+            quizFooterElements.style.display = 'flex';
+            break;
+        case menuFooterElements:
+            menuFooterElements.classList.add('active-panel');
+            menuFooterElements.style.display = 'flex';
+            break;
+    }
+}
+
+// function creates a timer at the initialization of the quiz
+function createTimer() {
+    if (quizIterationCount < 2) {
+        // Creates a two minute timer countdown
+        quitButton.addEventListener('click', function() {
+            clearInterval(timer);
+            minutesCounter.innerHTML = "02";
+            secondsCounter.innerHTML = "00";
+        });
+        let countDownTime = (new Date(Date.now()).getTime() + ((2 * 60000) + 1000));
+        // In practice, it has been taking 2 seconds for the timer to load and appear on screen, therefore, and extra second is added to allow for this latency (code seen in above line); the timer is hard-coded to start at 2 minutes in the HTML. Adjust the time will have to include adjusting the starting value in HTML.
+        const timer = setInterval(function() {
+            let currentTime = new Date(Date.now()).getTime();
+            let t = countDownTime - currentTime;
+            while (t > 0 && !testCompleted) {
+                let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+                let secs = Math.floor((t % (1000 * 60)) / 1000);
+                minutesCounter.innerHTML = ("0"+mins).slice(-2);
+                secondsCounter.innerHTML = ("0"+secs).slice(-2);
+                if (winnerPanel.classList.contains('active-panel')) {
+                    testCompleted = true;
+                    continue;
+                }
+                return t;
+            }
+            if (!testCompleted) {
+                activateFailureMenu(failedMenuTime);
+            }
+            clearInterval(timer);
+            minutesCounter.innerHTML = "02";
+            secondsCounter.innerHTML = "00";
+        }, 1000);
+        quitButton.removeEventListener('click', function() {});
+    }
+}
+
+// function to deterministically select puppy image to display based upon screen size
+function puppyImageSelector() {
+    if (window.innerWidth > 992) {
+        puppiesMedium[testCompletedCounter].classList.add('active-panel');
+    } else {
+        puppiesSmall[testCompletedCounter].classList.add('active-panel');
+    }
+}
+
+// function to deterministically select quitting pug image to display based upon screen size
+function quittingPuppyImageSelector() {
+    if (window.innerWidth > 992) {
+        quittingPugSmall[0].classList.remove('active-panel');
+        quittingPugMedium[0].classList.add('active-panel');
+    } else {
+        quittingPuppyMedium[0].classList.remove('active-panel');
+        quittingPuppySmall[0].classList.add('active-panel');
+    }
+}
+
+// function to act as a catch-all removal of active panel elements from previous states
+function setDefaultState() {
+    removeActiveFailureMenuClass();
+    removeFailureBackgroundColor();
+    deselectAllInputs();
+    startVoid();
+}
+
+// function changes background color for starter panel and quitting-pupy panel
+function changeBackgroundColor() {
+    if (startMenu.classList.contains('active-panel') || quittingPuppyPanel[0].classList.contains('active-panel')) {
+        document.body.style.backgroundColor=lightBase;
+    } else {
+        if (window.innerWidth > 460) {
+            document.body.style.backgroundColor=lightBase;
+        } else {
+            document.body.style.backgroundColor=lightBackground;
+        }
+    }
+}
+
+// function removes components of Nothing Selected Panel Display from DOM
+function removeNothingSelectedDisplay() {
+    nothingSelectedNotice.classList.remove('active-panel');
+    shadowPanel[0].classList.add('hidden');
+}
