@@ -80,3 +80,126 @@ let testCompletedCounter = 0;
 startVoid();
 // the above code line is necessary due to an unresolved bug that causes this element to be visible upon page load, but it shouldn't be visible until after the user presses the start button.
 changeBackgroundColor();
+
+// ********** FUNCTION DECLERATIONS **********
+
+// function to start/reset the quiz starter screen
+function startVoid() {
+    footerElementsInvisible(quizFooterElements);
+    footerElementsInvisible(menuFooterElements);
+}
+
+// function to remove .active-panel class from all question elements
+function removeActiveQuestionClass() {
+    for (let question of questions) {
+        question.classList.remove('active-panel');
+    }
+}
+
+// function to remove .active-panel class from all failure menus
+function removeActiveFailureMenuClass() {
+    for (let menu of failedMenus) {
+        menu.classList.remove('active-panel');
+    }
+}
+
+// function returns the id of the current active question
+function checkForActiveQuestion() {
+    for (let question of questions) {
+        if (question.classList.contains('active-panel')) {
+            return question.id;
+        }
+    }
+}
+
+// function returns true if a wrong answer has been checked
+function currentWrongAnswersChecked(currentWrongAnswers) {
+    for (let wrongAnswer of currentWrongAnswers) {
+        if (wrongAnswer.checked) {
+            return true;
+        }
+    }
+}
+
+// function to change footer & header background colors for failure message
+function setFailureBackgroundColor() {
+    headerHTML.classList.add('failure-background-color');
+    footerHTML.classList.add('failure-background-color');
+    retryButton.style.backgroundColor = darkErrorColor;
+    quitButton.style.backgroundColor = darkErrorColor;
+
+}
+
+// function to remove footer & header background colors of failure message
+function removeFailureBackgroundColor() {
+    headerHTML.classList.remove('failure-background-color');
+    footerHTML.classList.remove('failure-background-color');
+    retryButton.style.backgroundColor = currentButtonColor;
+    quitButton.style.backgroundColor = currentButtonColor;
+
+}
+
+// function to activate the appropriate failure menu or notice based on the state
+function activateFailureMenu(failureMenu) {
+    switch (failureMenu) {
+        default:
+            nothingSelectedNotice.classList.add('active-panel');
+            shadowPanel[0].classList.remove('hidden');
+            break;
+        case failedMenuAnswer:
+            removeActiveQuestionClass();
+            failedMenuAnswer.classList.add('active-panel')
+            footerElementsInvisible(quizFooterElements);
+            footerElementsVisible(menuFooterElements);
+            setFailureBackgroundColor();
+            break;
+        case failedMenuTime:
+            removeActiveQuestionClass();
+            removeActiveFailureMenuClass();
+            failedMenuTime.classList.add('active-panel');
+            footerElementsInvisible(quizFooterElements);
+            footerElementsVisible(menuFooterElements);
+            setFailureBackgroundColor();
+            // removes Nothing-Selected-Panel in case times runs out during this notification sequence.
+            if (nothingSelectedNotice.classList.contains('active-panel')) {
+                removeNothingSelectedDisplay()
+            }
+            return quizIterationCount = 0;
+    }
+}
+
+// function to select which group of answers to pass througth the currentWrongAnswers function
+function currentWrongAnswersCheckedSelector(questionNumberWrongAnswers) {
+    if (currentWrongAnswersChecked(questionNumberWrongAnswers)) {
+        activateFailureMenu(failedMenuAnswer);
+    } else {
+        activateFailureMenu();
+    }
+}
+
+// function to check if any wrong answer has been selected on the current question
+function wrongAnswerChecked() {
+    let currentQuestion = checkForActiveQuestion();
+    // Selects only the group of wrong answers from the current question
+    switch (currentQuestion) {
+        case "Question-One":
+            currentWrongAnswersCheckedSelector(questionOneWrongAnswers);
+            break;
+        case "Question-Two":
+            currentWrongAnswersCheckedSelector(questionTwoWrongAnswers);
+            break;
+        case "Question-Three":
+            currentWrongAnswersCheckedSelector(questionThreeWrongAnswers);
+            break;
+        default:
+            activateFailureMenu();
+            break;
+    }
+}
+
+// function reverts checked value to false for all possible answers (even ones hidden by "display: none")
+function deselectAllInputs() {
+    for (let answer of allAnswers) {
+        answer.checked = false;
+    }
+}
