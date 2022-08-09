@@ -323,3 +323,10 @@ label {
 .failure-background-color {
   background-color: #B00020;
 }
+
+/* MEDIA QUERY TEMPLATE FROM https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 460px) {
+  html, body {
+    background-color: #bdbdbd;
+  }
