@@ -451,3 +451,20 @@ quitButton.addEventListener('click', function() {
 window.addEventListener('resize', function() {
     changeBackgroundColor();
 });
+
+// // FOR DEBUGGING
+// const addAllButton = document.querySelector('#Add-All-Button');
+// const allHidden = document.querySelectorAll('.hidden');
+
+// function returnAll() {
+//     for (let hidden of allHidden) {
+//         hidden.classList.add('active-panel');
+//         // hidden.classList.remove('hidden');
+//     }
+//     removeActiveFailureMenuClass();
+//     nothingSelectedNotice.classList.remove('active-panel');
+// };
+
+// addAllButton.addEventListener('click', function() {
+//     returnAll();
+// });
