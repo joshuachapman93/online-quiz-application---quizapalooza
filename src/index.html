@@ -1,0 +1,167 @@
+<!-- Used as an underlay for the Nothing Selected Notice; prevents the rest of the application from functioing until the user closes the notice -->
+<div id="Shadow-Panel" class="shadow-panel hidden"></div>
+
+<header>
+  <div class="header-content-wrap">
+    <h1>Quizapalooza</h1>
+    <h2>Online Quiz Web Application</h2>
+  </div>
+</header>
+
+<main>
+  <article>
+    <h2 class="quiz-title hidden">eCommerce Quiz</h2>
+
+    <section id="Start-Menu" class="menu hidden active-panel">
+      <div class="menu-content-wrap">
+        <h3 id="Menu-h3">eCommerce Quiz</h3>
+        <p>You are about to take a three question quiz on eCommerce. You will have two minutes to complete the quiz. Excellence is mandatory; wrong answers will restart your quiz, however, your timer will continue to count down. You may retake the quiz as many times as you like. Press "Start" to begin.</p>
+      </div>
+    </section>
+
+    <section id="Failed-Menu-Answer" class="fail-notice hidden">
+      <div class="menu-content-wrap">
+        <h3 id="Menu-h3">Test Failed: Wrong Answer</h3>
+        <p>I'm sorry, but sadly you have selected a wrong answer and failed the test. As a reminder, excellence is mandatory, and so you will have to restart to continue the test. Press the Quit Button to return to the Main Menu or press Retry to further test your excellence.</p>
+      </div>
+    </section>
+
+    <section id="Failed-Menu-Time" class="fail-notice hidden">
+      <div class="menu-content-wrap">
+        <h3 id="Menu-h3">Test Failed: Timed Out</h3>
+        <p>I'm sorry, but sadly you have run out of time and failed the test. As a reminder, excellence is mandatory, and so you will have to restart to retake the test. Press the Quit Button to return to the Main Menu or press Retry once again test your excellence.</p>
+      </div>
+    </section>
+
+    <section id="Nothing-Selected-Notice" class="error-notice hidden">
+      <div class="menu-content-wrap">
+        <h3 id="Menu-h3">Nothing Was Selected</h3>
+        <p>With the goal of excellence in mind, you must select an answer to continue.</p>
+        <input id="Close-Button" type="submit" value="Close" name="Close">
+      </div>
+    </section>
+
+    <section id="Quitting-Pug" class="quitting-pug hidden">
+      <div class="menu-content-wrap hidden">
+        <p id="It-Me-Paragraph">hello. it me.</p>
+        <img id="Quitting-Pug-Small" class="puppies-small hidden quitting-pug-small" src="https://pbs.twimg.com/media/FQe5bU3WQAgBmBc?format=jpg&name=small" alt="A sad-looking pug puppy with black fur; its eyes watering as they look up towards the camera with a frowning face.">
+        <img id="Quitting-Pug-Medium" class="puppies-small hidden quitting-pug-medium" src="https://pbs.twimg.com/media/FQe_HZfXMAYQRty?format=jpg&name=small" alt="A sad-looking pug puppy with black fur; its eyes watering as they look up towards the camera with a frowning face.">
+        <p class="small-paragraph">i was wondering if after all these puppy years, you'd like to retry. dat way i not need say hello from da other side...</p>
+      </div>
+    </section>
+
+    <section id="Question-One" class="question hidden">
+      <h3>Question 1 of 3</h3>
+      <form action="">
+        <h4>Which of the following is not a real eCommerce platform?</h4>
+        <div class="radio-button-wrapper">
+          <input class="wrong-answer answer" type="radio" id="Shopify" name="real-eCommerce-platform" value="Shopify">
+          <label for="Shopify">Shopify</label><br>
+        </div>
+        <div class="radio-button-wrapper">
+          <input class="wrong-answer answer" type="radio" id="WooCommerce" name="real-eCommerce-platform" value="WooCommerce">
+          <label for="WooCommerce">WooCommerce</label><br>
+        </div>
+        <div class="radio-button-wrapper">
+          <input class="correct-answer answer" type="radio" id="ShopCommerce" name="real-eCommerce-platform" value="ShopCommerce">
+          <label for="ShopCommerce">ShopCommerce</label><br>
+        </div>
+        <div class="radio-button-wrapper">
+          <input class="wrong-answer answer" type="radio" id="BigCommerce" name="real-eCommerce-platform" value="BigCommerce">
+          <label for="BigCommerce">BigCommerce</label><br>
+        </div>
+      </form>
+    </section>
+
+    <section id="Question-Two" class="question hidden">
+      <h3>Question 2 of 3</h3>
+      <form action="">
+        <h4>If Shopify is so good, why are Shopify developers necessary?</h4>
+        <div class="radio-button-wrapper">
+          <input class="wrong-answer answer" type="radio" id="To_Save" name="why-shopify-devs" value="To_Save">
+          <label for="To_Save">To save time on things like store setups and migrations</label><br>
+        </div>
+        <div class="radio-button-wrapper">
+          <input class="wrong-answer answer" type="radio" id="To_Extend" name="why-shopify-devs" value="To_Extend">
+          <label for="To_Extend">To extend the limited design options and functionalities of themes with custom code</label><br>
+        </div>
+        <div class="radio-button-wrapper">
+          <input class="wrong-answer answer" type="radio" id="To_Provide" name="why-shopify-devs" value="To_Provide">
+          <label for="To_Provide">To provide support with a deep understanding of how the platform works and what its limitations are</label><br>
+        </div>
+        <div class="radio-button-wrapper">
+          <input class="correct-answer answer" type="radio" id="All_Above" name="why-shopify-devs" value="All_Above">
+          <label for="All_Above">All the above</label><br>
+        </div>
+      </form>
+    </section>
+
+    <section id="Question-Three" class="question hidden">
+      <h3>Question 3 of 3</h3>
+      <form action="">
+        <h4>Which of the following is true about Shopify developers?</h4>
+        <div class="radio-button-wrapper">
+          <input class="wrong-answer answer" type="radio" id="Paid_Well" name="true-shopify-devs" value="Paid_Well">
+          <label for="Paid_Well">They are paid extremely well</label><br>
+        </div>
+        <div class="radio-button-wrapper">
+          <input class="wrong-answer answer" type="radio" id="High_Demand" name="true-shopify-devs" value="High_Demand">
+          <label for="High_Demand">There is a high demand for them</label><br>
+        </div>
+        <div class="radio-button-wrapper">
+          <input class="wrong-answer answer" type="radio" id="Need_Know" name="true-shopify-devs" value="Need_Know">
+          <label for="Need_Know">They need to know web development, the platform itself, and the liquid template language</label><br>
+        </div>
+        <div class="radio-button-wrapper">
+          <input class="correct-answer answer" type="radio" id="All_Above_2" name="true-shopify-devs" value="All_Above_2">
+          <label for="All_Above_2">All the above</label><br>
+        </div>
+      </form>
+    </section>
+
+    <section id="You-Won" class="winner-panel hidden">
+      <h3 id="Menu-h3">Congratulations!</h3>
+      <p>You have achieved excellence! Now, please enjoy this image of cute puppies in celebration of your success!</p>
+      <!-- SMALL PUPPY IMAGES FOR SMALLER SCREEN SIZES -->
+      <img id="Shih-Tzu-Small" class="hidden puppies-small-img" src="https://pbs.twimg.com/media/FQez3GHXMAcQdlf?format=jpg&name=small" alt="Three Shih-Tzu puppies sitting cuddled together on a wooden board in a rustic house with a blue ball.">
+      <img id="Labradoodle-Small" class="hidden puppies-small-img" src="https://pbs.twimg.com/media/FQe0hHsX0AE7-9J?format=jpg&name=small" alt="Eleven blonde Labradoodle puppies are standing side-by-side in the bed of an old Chevrolet Truck, their front paws resting on the tailgate.">
+      <img id="Plott-Hound-Small" class="hidden puppies-small-img" src="https://pbs.twimg.com/media/FQe12jyXIAAOyTg?format=jpg&name=small" alt="On a lawn are three Plott Hound puppies sitting in a whisker basket, their heads resting over the edge of the basket.">
+      <img id="Siberian-Husky-Small" class="hidden puppies-small-img" src="https://pbs.twimg.com/media/FQe21UIXwAgPhSU?format=jpg&name=small" alt="Two Siberian Husky puppies are sitting outside against a stone-plaster brick wall; they have their mouths open and their eyes bright with excitement as they playfully bite at each other.">
+      <!-- MEDIUM PUPPY IMAGES FOR MEDIUM SCREEN SIZES -->
+      <img id="Shih-Tzu-Medium" class="hidden puppies-medium-img" src="https://pbs.twimg.com/media/FQe8_gPXEAUKjj1?format=jpg&name=small" alt="Three Shih-Tzu puppies sitting cuddled together on a wooden board in a rustic house with a blue ball.">
+      <img id="Labradoodle-Medium" class="hidden puppies-medium-img" src="https://pbs.twimg.com/media/FQe9jXNXwAgTmcc?format=jpg&name=small" alt="Eleven blonde Labradoodle puppies are standing side-by-side in the bed of an old Chevrolet Truck, their front paws resting on the tailgate.">
+      <img id="Plott-Hound-Medium" class="hidden puppies-medium-img" src="https://pbs.twimg.com/media/FQe9_G3WYAQ_W0f?format=jpg&name=small" alt="On a lawn are three Plott Hound puppies sitting in a whisker basket, their heads resting over the edge of the basket.">
+      <img id="Siberian-Husky-Medium" class="hidden puppies-medium-img" src="https://pbs.twimg.com/media/FQe-TukXIAANrEf?format=jpg&name=small" alt="Two Siberian Husky puppies are sitting outside against a stone-plaster brick wall; they have their mouths open and their eyes bright with excitement as they playfully bite at each other.">
+      <p class="small-paragraph">(Please play again for the opportunity to increase your daily dose of serotonin.)</p>
+    </section>
+  </article>
+</main>
+
+<footer>
+  <div id="Start-Button-Wrap" class="footer-content-wrap hidden active-panel">
+    <input id="Start-Button" type="submit" value="Start" name="Start">
+  </div>
+
+  <div id="Retry-Button-Wrap" class="footer-content-wrap hidden">
+    <input id="Retry-Button" type="submit" value="Retry" name="Main-Menu">
+    <input id="Quit-Button" type="submit" value="Quit" name="Quit-Button">
+  </div>
+
+  <div id="Quiz-Button-Wrap" class="footer-content-wrap hidden">
+    <input id="Next-Button" type="submit" value="Next ❯" name="Next">
+    <div class="container-timer">
+      <p id="Timer-Title">time left:</p>
+      <p id="timer">
+        <span id="timer-mins">02</span>
+        <span id="timer-colon"> : </span>
+        <span id="timer-secs">00</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- FOR DEBUGGING -->
+  <!-- <div id="Add-All-Button-Wrap" class="footer-content-wrap hidden active-panel">
+            <input id="Add-All-Button" type="submit" value="Add All" name="Add-All">
+        </div> -->
+
+</footer>
