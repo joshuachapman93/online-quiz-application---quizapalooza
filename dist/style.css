@@ -330,3 +330,16 @@ label {
   html, body {
     background-color: #bdbdbd;
   }
+
+  .question, .winner-panel {
+    background-color: #FFFFFF;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgba(18, 18, 18, 0.3);
+    accent-color: #6200EE;
+    background: linear-gradient(#FFFFFF, #FFFFFF) padding-box, linear-gradient(to bottom, #6200EE, #3700B3) border-box;
+    border: 20px solid transparent;
+    border-radius: 25px;
+    padding: clamp(2rem, 1rem + 10vw, 3rem);
+  }
+}
