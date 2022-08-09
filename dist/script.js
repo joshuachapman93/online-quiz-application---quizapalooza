@@ -75,3 +75,8 @@ const quittingPugSmall = document.getElementsByClassName('quitting-puppy-small')
 const quittingPugMedium = document.getElementsByClassName('quitting-puppy-medium');
 let testCompleted = false;
 let testCompletedCounter = 0;
+
+// ********** START VOID **********
+startVoid();
+// the above code line is necessary due to an unresolved bug that causes this element to be visible upon page load, but it shouldn't be visible until after the user presses the start button.
+changeBackgroundColor();
