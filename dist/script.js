@@ -326,3 +326,128 @@ function removeNothingSelectedDisplay() {
     nothingSelectedNotice.classList.remove('active-panel');
     shadowPanel[0].classList.add('hidden');
 }
+
+// ********** EVENT HANDLER DECLERATIONS **********
+
+// Start Button begins Test
+startButton.addEventListener('click', function() {
+    quizIterationCount++;
+    footerElementsInvisible(startFooterElements);
+    footerElementsVisible(quizFooterElements);
+    startMenu.classList.remove('active-panel');
+    questions[0].classList.add('active-panel');
+    createTimer();
+    changeBackgroundColor();
+});
+
+// Next Button Moves Through Questions when Correct Answer is Selected {
+let nextButtonClickedCount = 0;
+let correctAnswerCounter = 0;
+nextButton.addEventListener('click', function() {
+    if (correctAnswers[correctAnswerCounter].checked) {
+        nextButtonClickedCount++;
+        correctAnswerCounter++;
+        while (correctAnswerCounter <= questions.length) {
+            removeActiveQuestionClass();
+            if(questions[nextButtonClickedCount]) {
+                questions[(nextButtonClickedCount)].classList.add('active-panel');
+            // activates Test Completion (or "Winner's") Screen
+            } else {
+                winnerPanel.classList.add('active-panel');
+                puppyImageSelector();
+                footerElementsInvisible(quizFooterElements);
+                footerElementsVisible(menuFooterElements);
+            }
+            return correctAnswers[correctAnswerCounter-1].checked = false;
+            // This clears the checkmark on the correct answer of the previous question; this is necessary because although the question is hidden from view, it is still existing in the DOM, and so needs to be cleared in order to allow the Next Button to rely on the next question's correct answer to function.
+        }
+    } else {
+        wrongAnswerChecked();
+    }
+    changeBackgroundColor();
+});
+
+// Close Button closes the "Nothing Was Selected" Notice
+closeButton.addEventListener('click', function() {
+    removeNothingSelectedDisplay()
+});
+
+// Retry Button returns user to the first question of the quiz; if on winner panel, resets the timer.
+retryButton.addEventListener('click', function() {
+    const testCompletedChecker = function () {
+        if (testCompletedCounter < 3) {
+            testCompletedCounter++
+        } else {
+            testCompletedCounter = 0;
+        }
+        return testCompleted = false,
+        quizIterationCount = 0;
+    }
+    setDefaultState();
+    // resets quiz variables if user wishes to retake the quiz post victory
+    if (winnerPanel.classList.contains('active-panel')) {
+        winnerPanel.classList.remove('active-panel');
+        puppiesSmall[testCompletedCounter].classList.remove('active-panel');
+        puppiesMedium[testCompletedCounter].classList.remove('active-panel');
+        testCompletedChecker();
+    } else if (quittingPuppyPanel[0].classList.contains('active-panel')) {
+        quittingPugPanel[0].classList.remove('active-panel');
+        testCompletedChecker();
+    }
+    // prepares question one of the quiz state
+    footerElementsVisible(quizFooterElements);
+    questions[0].classList.add('active-panel');
+    nextButtonClickedCount = 0;
+    correctAnswerCounter = 0;
+    quizIterationCount++;
+    createTimer();
+    changeBackgroundColor();
+    return nextButtonClickedCount,
+    quizIterationCount,
+    correctAnswerCounter,
+    testCompleted,
+    testCompletedCounter;
+});
+
+// Quit Button returns user to the main menu, resetting all variables
+quitButton.addEventListener('click', function() {
+    // notifies createTimer() function that the Quit Button has been pressed and so the timer should end.
+    const resetQuiz = function() {
+        setDefaultState();
+        // returns quiz to start menu state
+        footerElementsVisible(startFooterElements);
+        startMenu.classList.add('active-panel');
+        // resets and returns variables for start menu state
+        return nextButtonClickedCount = 0,
+        correctAnswerCounter = 0,
+        testCompleted = false,
+        testCompletedCounter = 0,
+        quizIterationCount = 0;
+    }
+    if (quittingPuppyPanel[0].classList.contains('active-panel')) {
+        quittingPuppyPanel[0].classList.remove('active-panel');
+        resetQuiz();
+    } else if (winnerPanel.classList.contains('active-panel')) {
+        winnerPanel.classList.remove('active-panel');
+        puppiesSmall[testCompletedCounter].classList.remove('active-panel');
+        puppiesMedium[testCompletedCounter].classList.remove('active-panel');
+        footerElementsVisible(menuFooterElements);
+        quittingPuppyPanel[0].classList.add('active-panel');
+        quittingPuppyImageSelector();
+        setFailureBackgroundColor();
+        changeBackgroundColor();
+    } else {
+        resetQuiz();
+    }
+    changeBackgroundColor();
+    return nextButtonClickedCount,
+    correctAnswerCounter,
+    testCompleted,
+    testCompletedCounter,
+    quizIterationCount;
+});
+
+// Window resize checks to make sure body background color is accurate based upon window size
+window.addEventListener('resize', function() {
+    changeBackgroundColor();
+});
